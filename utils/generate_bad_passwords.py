@@ -18,7 +18,7 @@ def generate_leaked_passwords(outfile, url, minlength):
     temp_outfile = tempfile.NamedTemporaryFile(delete=False)
 
     click.echo('Downloading password file...', nl=False, err=True)
-    with requests.get(url, stream=True) as r:
+    with requests.get(url, stream=True, timeout=60) as r:
         r.raise_for_status()
         for chunk in r.iter_content(chunk_size=8192):
             if chunk:
