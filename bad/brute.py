@@ -3,6 +3,7 @@
 import subprocess
 import shlex
 import sys
+from security import safe_command
 
 program = shlex.quote(sys.argv[1])
 username = shlex.quote(sys.argv[2])
@@ -20,7 +21,7 @@ passwords = [
 
 for password in passwords:
     safe_password = shlex.quote(password)
-    result = subprocess.run([program, username, safe_password], stdout=subprocess.DEVNULL)
+    result = safe_command.run(subprocess.run, [program, username, safe_password], stdout=subprocess.DEVNULL)
     if result.returncode == 0:
         print("cracked! user: {} password: {}".format(username, password))
         break
