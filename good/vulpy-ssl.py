@@ -10,7 +10,7 @@ from mod_mfa import mod_mfa
 import libsession
 
 app = Flask('vulpy')
-app.config['SECRET_KEY'] = 'aaaaaaa'
+app.config['SECRET_KEY'] = 'change_this_to_a_random_secret_key'
 
 app.register_blueprint(mod_hello, url_prefix='/hello')
 app.register_blueprint(mod_user, url_prefix='/user')
@@ -26,4 +26,5 @@ def do_home():
 def before_request():
     g.session = libsession.load(request)
 
-app.run(debug=True, host='127.0.1.1', ssl_context=('/tmp/acme.cert', '/tmp/acme.key'))
+if __name__ == '__main__':
+    app.run(debug=False, host='127.0.1.1', ssl_context=('/tmp/acme.cert', '/tmp/acme.key'))

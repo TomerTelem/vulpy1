@@ -5,6 +5,7 @@
     <h2 class="w3-wide">{{ session.username }} (you)</h2>
 
     <form method="POST" action="/post" class="w3-padding-16">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
       <div class="w3-rest">
         <input class="w3-input w3-border" type="text" name="text" placeholder="What are you thinking?">
       </div>
@@ -22,4 +23,5 @@
 
   </div>
 {% include "footer.html" %}
+
 

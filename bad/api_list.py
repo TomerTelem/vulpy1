@@ -7,7 +7,7 @@ import requests
 @click.argument('username')
 def cmd_api_client(username):
 
-    r = requests.get('http://127.0.1.1:5000/api/post/{}'.format(username), timeout=60)
+    r = requests.get('https://127.0.1.1:5000/api/post/{}'.format(username), timeout=60)
     if r.status_code != 200:
         click.echo('Some error ocurred. Status Code: {}'.format(r.status_code))
         print(r.text)
@@ -18,3 +18,4 @@ def cmd_api_client(username):
 
 if __name__ == '__main__':
     cmd_api_client()
+
