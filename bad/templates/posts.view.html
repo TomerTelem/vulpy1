@@ -11,6 +11,7 @@
 
       {% if username == g.session.username %}
       <form method="POST" action="/posts/" class="w3-padding-16">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="w3-rest">
           <input class="w3-input w3-border" type="text" name="text" placeholder="What are you thinking?">
         </div>
@@ -39,4 +40,5 @@
 
   </div>
 {% include "footer.html" %}
+
 
