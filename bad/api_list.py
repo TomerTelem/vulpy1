@@ -1,13 +1,12 @@
-from pathlib import Path
 
 import click
-import requests
+from security import safe_requests
 
 @click.command()
 @click.argument('username')
 def cmd_api_client(username):
 
-    r = requests.get('http://127.0.1.1:5000/api/post/{}'.format(username), timeout=60)
+    r = safe_requests.get('http://127.0.1.1:5000/api/post/{}'.format(username), timeout=60)
     if r.status_code != 200:
         click.echo('Some error ocurred. Status Code: {}'.format(r.status_code))
         print(r.text)
