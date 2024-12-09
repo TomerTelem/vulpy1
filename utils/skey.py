@@ -1,12 +1,13 @@
 import hashlib
-import random
+import secrets
+
 #import secrets # needs python 3.6
 
 OTPNUM = 50
 ALGORITHM = 'sha1'
 
 #key = secrets.token_bytes(2048) # needs python 3.6
-key = str(random.getrandbits(2048)).encode()
+key = str(secrets.SystemRandom().getrandbits(2048)).encode()
 
 lastkey = hashlib.new(ALGORITHM, key).hexdigest()
 
