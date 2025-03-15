@@ -1,8 +1,8 @@
 import libuser
-import random
 import hashlib
 
 from pathlib import Path
+import secrets
 
 
 def keygen(username, password=None):
@@ -11,7 +11,7 @@ def keygen(username, password=None):
         if not libuser.login(username, password):
             return None
 
-    key = hashlib.sha256(str(random.getrandbits(2048)).encode()).hexdigest()
+    key = hashlib.sha256(str(secrets.SystemRandom().getrandbits(2048)).encode()).hexdigest()
 
     for f in Path('/tmp/').glob('vulpy.apikey.' + username + '.*'):
         print('removing', f)
