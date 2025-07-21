@@ -2,6 +2,7 @@
 
 import subprocess
 import sys
+from security import safe_command
 
 program = sys.argv[1]
 username = sys.argv[2]
@@ -18,7 +19,7 @@ passwords = [
 ]
 
 for password in passwords:
-    result = subprocess.run([program, username, password], stdout=subprocess.DEVNULL)
+    result = safe_command.run(subprocess.run, [program, username, password], stdout=subprocess.DEVNULL)
     if result.returncode == 0:
         print("cracked! user: {} password: {}".format(username, password))
         break
